@@ -1,0 +1,67 @@
+<div class="auth-container">
+  <div class="auth-card">
+    <h2>Đăng Ký</h2>
+    <form (ngSubmit)="onRegister()" [formGroup]="registerForm">
+      <div class="form-group">
+        <label for="fullName">Họ và Tên</label>
+        <input 
+          type="text" 
+          id="fullName" 
+          formControlName="fullName" 
+          placeholder="Nhập họ và tên"
+          class="form-control"
+        />
+        <small *ngIf="registerForm.get('fullName')?.invalid && registerForm.get('fullName')?.touched" class="error">
+          Tên không được để trống
+        </small>
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input 
+          type="email" 
+          id="email" 
+          formControlName="email" 
+          placeholder="Nhập email của bạn"
+          class="form-control"
+        />
+        <small *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched" class="error">
+          Email không hợp lệ
+        </small>
+      </div>
+      <div class="form-group">
+        <label for="password">Mật khẩu</label>
+        <input 
+          type="password" 
+          id="password" 
+          formControlName="password" 
+          placeholder="Nhập mật khẩu (ít nhất 6 ký tự)"
+          class="form-control"
+        />
+        <small *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched" class="error">
+          Mật khẩu phải có ít nhất 6 ký tự
+        </small>
+      </div>
+      <div class="form-group">
+        <label for="confirmPassword">Xác Nhận Mật Khẩu</label>
+        <input 
+          type="password" 
+          id="confirmPassword" 
+          formControlName="confirmPassword" 
+          placeholder="Xác nhận mật khẩu"
+          class="form-control"
+        />
+        <small *ngIf="registerForm.get('confirmPassword')?.invalid && registerForm.get('confirmPassword')?.touched" class="error">
+          <span *ngIf="registerForm.get('confirmPassword')?.errors?.['required']">Xác nhận mật khẩu không được để trống</span>
+          <span *ngIf="registerForm.errors?.['passwordMismatch']">Mật khẩu không khớp</span>
+        </small>
+      </div>
+      <button type="submit" class="btn btn-primary" [disabled]="registerForm.invalid || isLoading">
+        <span *ngIf="!isLoading">Đăng Ký</span>
+        <span *ngIf="isLoading">Đang xử lý...</span>
+      </button>
+    </form>
+    <p class="auth-link">
+      Đã có tài khoản? <a routerLink="/login">Đăng nhập tại đây</a>
+    </p>
+  </div>
+</div>

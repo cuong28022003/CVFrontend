@@ -1,0 +1,35 @@
+<!-- Header -->
+<header class="header">
+  <div class="header-content">
+    <div class="logo">
+      <h1>CV Creator</h1>
+    </div>
+    <nav class="nav">
+      <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Trang Chủ</a>
+      <a routerLink="/about" routerLinkActive="active">Về Chúng Tôi</a>
+      <a routerLink="/contact" routerLinkActive="active">Liên Hệ</a>
+    </nav>
+    <div class="auth-menu">
+      <ng-container *ngIf="!currentUser">
+        <a routerLink="/login" class="btn-link">Đăng Nhập</a>
+        <a routerLink="/register" class="btn-link btn-primary">Đăng Ký</a>
+      </ng-container>
+      <ng-container *ngIf="currentUser">
+        <span class="user-name">{{ currentUser.fullName }}</span>
+        <button (click)="logout()" class="btn-link btn-logout">Đăng Xuất</button>
+      </ng-container>
+    </div>
+  </div>
+</header>
+
+<!-- Main Content -->
+<main class="main-content">
+  <router-outlet></router-outlet>
+</main>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="footer-content">
+    <p>&copy; 2025 CV Creator. Tất cả các quyền được bảo lưu.</p>
+  </div>
+</footer>
