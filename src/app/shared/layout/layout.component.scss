@@ -120,6 +120,12 @@
     }
 }
 
+.user-menu-trigger {
+    font-weight: 600;
+    text-transform: none;
+    padding: 0 8px;
+}
+
 // Responsive Design
 @media (max-width: 768px) {
     .header-content {

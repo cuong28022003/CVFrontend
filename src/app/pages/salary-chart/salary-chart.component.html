@@ -1,0 +1,24 @@
+<div class="salary-chart-container">
+  <div class="chart-wrapper">
+    <canvas baseChart
+            [data]="lineChartData"
+            [options]="lineChartOptions"
+            [type]="'line'"
+            [legend]="lineChartLegend">
+    </canvas>
+  </div>
+  
+  <div class="chart-info">
+    <h3>Thông tin biểu đồ</h3>
+    <p>Biểu đồ thể hiện mức lương trung bình theo năm kinh nghiệm cho các vị trí phổ biến trong ngành Công nghệ thông tin tại Việt Nam.</p>
+    <ul>
+      <li><strong>Frontend Developer:</strong> Phát triển giao diện người dùng (HTML, CSS, JavaScript, Angular, React, Vue)</li>
+      <li><strong>Backend Developer:</strong> Phát triển logic nghiệp vụ và cơ sở dữ liệu (Java, .NET, Node.js, Python)</li>
+      <li><strong>Full Stack Developer:</strong> Phát triển cả Frontend và Backend</li>
+      <li><strong>DevOps Engineer:</strong> Quản lý hạ tầng, triển khai và tự động hóa</li>
+      <li><strong>Mobile Developer:</strong> Phát triển ứng dụng di động (iOS, Android, React Native, Flutter)</li>
+      <li><strong>Data Engineer:</strong> Xây dựng và quản lý pipeline dữ liệu</li>
+    </ul>
+    <p class="note"><em>* Số liệu mang tính chất tham khảo, mức lương thực tế có thể thay đổi tùy theo công ty, kỹ năng và địa điểm làm việc.</em></p>
+  </div>
+</div>

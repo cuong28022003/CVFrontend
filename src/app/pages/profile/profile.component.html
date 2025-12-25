@@ -1,0 +1,57 @@
+<section class="profile">
+    <div class="container">
+        <h1>Thông tin cá nhân</h1>
+
+        <mat-card>
+            <mat-card-content>
+                <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+                    <div class="avatar-section">
+                        <img *ngIf="avatarPreview" [src]="avatarPreview" alt="Avatar">
+                        <div *ngIf="!avatarPreview" class="avatar-placeholder">
+                            <p>Chưa có ảnh đại diện</p>
+                        </div>
+                        <input type="file" #avatarInput (change)="onAvatarChange($event)" accept="image/*"
+                            style="display: none;">
+                        <button type="button" mat-raised-button (click)="avatarInput.click()">
+                            Tải ảnh lên
+                        </button>
+                    </div>
+
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>Tên đầy đủ</mat-label>
+                        <input matInput formControlName="fullName" placeholder="Nhập tên đầy đủ">
+                        <mat-error *ngIf="fullName?.hasError('required')">Tên đầy đủ là bắt buộc</mat-error>
+                        <mat-error *ngIf="fullName?.hasError('minlength')">Tên phải ít nhất 3 ký tự</mat-error>
+                    </mat-form-field>
+
+                    <!-- Email (read-only) -->
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>Email</mat-label>
+                        <input matInput formControlName="email" [disabled]="true">
+                    </mat-form-field>
+
+                    <!-- Phone -->
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>Số điện thoại</mat-label>
+                        <input matInput formControlName="phone" placeholder="Nhập số điện thoại">
+                        <mat-error *ngIf="phone?.hasError('pattern')">Số điện thoại không hợp lệ</mat-error>
+                    </mat-form-field>
+
+                    <!-- Location -->
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>Địa chỉ</mat-label>
+                        <input matInput formControlName="location" placeholder="Nhập địa chỉ của bạn">
+                    </mat-form-field>
+
+                    <!-- Buttons -->
+                    <div class="button-group">
+                        <button mat-raised-button color="primary" [disabled]="isLoading" type="submit">
+                            <mat-spinner *ngIf="isLoading" diameter="20" style="margin-right: 8px;"></mat-spinner>
+                            {{ isLoading ? 'Đang cập nhật...' : 'Cập nhật thông tin' }}
+                        </button>
+                    </div>
+                </form>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</section>

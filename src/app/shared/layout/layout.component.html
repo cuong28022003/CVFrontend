@@ -15,8 +15,14 @@
         <a routerLink="/register" class="btn-link btn-primary">Đăng Ký</a>
       </ng-container>
       <ng-container *ngIf="currentUser">
-        <span class="user-name">{{ currentUser.fullName }}</span>
-        <button (click)="logout()" class="btn-link btn-logout">Đăng Xuất</button>
+        <button mat-button [matMenuTriggerFor]="userMenu">{{ currentUser.fullName }}</button>
+
+        <mat-menu #userMenu="matMenu">
+          <button mat-menu-item (click)="goToDashboard()">Dashboard</button>
+          <button mat-menu-item (click)="goToProfile()">Hồ Sơ</button>
+          <button mat-menu-item (click)="logout()">Đăng Xuất</button>
+        </mat-menu>
+  
       </ng-container>
     </div>
   </div>

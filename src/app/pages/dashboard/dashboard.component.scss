@@ -1,0 +1,250 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&display=swap');
+
+:host {
+    display: block;
+    font-family: 'Space Grotesk', 'Segoe UI', sans-serif;
+    color: #0f172a;
+}
+
+.dashboard {
+    min-height: calc(100vh - 64px);
+    padding: 32px;
+    background: radial-gradient(circle at 20% 20%, #f7fbff 0, #f7fbff 25%, transparent 40%),
+        radial-gradient(circle at 80% 0%, #fef6e4 0, #fef6e4 22%, transparent 36%),
+        linear-gradient(135deg, #f8fafc 0%, #eef2ff 100%);
+}
+
+.hero {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px;
+    margin-bottom: 24px;
+}
+
+.eyebrow {
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 600;
+    color: #0ea5e9;
+    margin: 0 0 8px;
+}
+
+h1 {
+    margin: 0 0 6px;
+    font-size: 32px;
+    letter-spacing: -0.02em;
+}
+
+.lede {
+    margin: 0;
+    color: #475569;
+}
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.stat-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+    padding: 14px 16px;
+    box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06);
+}
+
+.stat-card .label {
+    margin: 0 0 4px;
+    color: #64748b;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
+
+.stat-card .value {
+    margin: 0;
+    font-size: 26px;
+    font-weight: 600;
+}
+
+.stat-card .value.accent {
+    color: #0ea5e9;
+}
+
+.stat-card .value.warn {
+    color: #f59e0b;
+}
+
+.stat-card .hint {
+    margin: 4px 0 0;
+    color: #94a3b8;
+    font-size: 13px;
+}
+
+.toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    margin: 12px 0 20px;
+}
+
+.filters {
+    display: flex;
+    gap: 8px;
+}
+
+.chip {
+    border: 1px solid #d0d7e2;
+    background: #fff;
+    color: #0f172a;
+    padding: 8px 14px;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.chip.active {
+    background: #0ea5e9;
+    color: #fff;
+    border-color: #0ea5e9;
+    box-shadow: 0 10px 20px rgba(14, 165, 233, 0.28);
+}
+
+.muted {
+    margin: 0;
+    color: #94a3b8;
+    font-size: 13px;
+}
+
+.cv-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 16px;
+}
+
+.cv-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+    padding: 16px;
+    box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06);
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.cv-card__top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+}
+
+.status {
+    padding: 6px 10px;
+    border-radius: 999px;
+    background: #e2e8f0;
+    color: #0f172a;
+    font-weight: 600;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.status.public {
+    background: #dcf7ff;
+    color: #0369a1;
+    border: 1px solid #bae6fd;
+}
+
+.pill {
+    padding: 6px 10px;
+    background: #fef3c7;
+    color: #92400e;
+    border-radius: 12px;
+    font-size: 12px;
+}
+
+h3 {
+    margin: 6px 0 0;
+    font-size: 20px;
+    letter-spacing: -0.01em;
+}
+
+.role {
+    margin: 0;
+    color: #475569;
+}
+
+.meta {
+    margin: 0;
+    color: #94a3b8;
+    font-size: 13px;
+}
+
+.actions {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    margin-top: 10px;
+}
+
+.btn {
+    padding: 10px 12px;
+    border-radius: 10px;
+    border: 1px solid transparent;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn.primary {
+    background: linear-gradient(120deg, #0ea5e9, #22c55e);
+    color: #fff;
+    box-shadow: 0 12px 30px rgba(34, 197, 94, 0.24);
+}
+
+.btn.primary:hover {
+    transform: translateY(-2px);
+}
+
+.btn.ghost {
+    background: #f8fafc;
+    border-color: #e2e8f0;
+    color: #0f172a;
+}
+
+.btn.danger {
+    background: #fee2e2;
+    color: #b91c1c;
+    border-color: #fecaca;
+}
+
+.btn:hover {
+    box-shadow: 0 8px 20px rgba(15, 23, 42, 0.12);
+}
+
+.empty {
+    background: #fff;
+    border: 1px dashed #cbd5e1;
+    border-radius: 16px;
+    padding: 32px;
+    text-align: center;
+    color: #475569;
+    box-shadow: inset 0 0 0 1px #e2e8f0;
+}
+
+@media (max-width: 720px) {
+    .hero {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .actions {
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    }
+}

@@ -1,0 +1,107 @@
+.cv-form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 64px);
+    padding: 20px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+
+    .form-card {
+        width: 100%;
+        max-width: 500px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+
+        mat-card-header {
+            margin-bottom: 30px;
+
+            mat-card-title {
+                font-size: 24px;
+                font-weight: 600;
+                color: #333;
+            }
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+
+            .form-group {
+                width: 100%;
+
+                .full-width {
+                    width: 100%;
+                }
+
+                mat-form-field {
+                    font-size: 14px;
+                }
+            }
+
+            .form-actions {
+                display: flex;
+                gap: 12px;
+                justify-content: flex-end;
+                margin-top: 10px;
+
+                button {
+                    min-width: 120px;
+                    height: 40px;
+                    font-size: 14px;
+                    font-weight: 500;
+
+                    &.submit-btn {
+                        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                        color: white;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        gap: 8px;
+
+                        &:disabled {
+                            opacity: 0.7;
+                        }
+                    }
+
+                    &.cancel-btn {
+                        color: #667eea;
+                        border-color: #667eea;
+
+                        &:hover:not(:disabled) {
+                            background-color: rgba(102, 126, 234, 0.1);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 600px) {
+    .cv-form-container {
+        padding: 16px;
+
+        .form-card {
+            mat-card-header {
+                margin-bottom: 20px;
+
+                mat-card-title {
+                    font-size: 20px;
+                }
+            }
+
+            form {
+                gap: 16px;
+
+                .form-actions {
+                    flex-direction: column;
+
+                    button {
+                        width: 100%;
+                    }
+                }
+            }
+        }
+    }
+}

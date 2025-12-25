@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule, AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
@@ -21,9 +21,11 @@ const passwordMatchValidator: ValidatorFn = (control: AbstractControl): Validati
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss'
 })
-export class RegisterComponent implements OnInit {
+export class RegisterComponent implements OnInit, AfterViewInit {
   registerForm!: FormGroup;
   isLoading = false;
+
+  @ViewChild('fullNameInput') fullNameInput!: ElementRef;
 
   constructor(
     private fb: FormBuilder,
@@ -40,6 +42,11 @@ export class RegisterComponent implements OnInit {
     }, { validators: passwordMatchValidator });
   }
 
+  ngAfterViewInit(): void {
+    // Auto focus vào input fullName sau khi view được khởi tạo
+    this.fullNameInput.nativeElement.focus();
+  }
+
   onRegister(): void {
     if (this.registerForm.valid) {
       this.isLoading = true;
@@ -47,7 +54,9 @@ export class RegisterComponent implements OnInit {
 
       this.authService.register(email, fullName, password).subscribe({
         next: () => {
-          this.router.navigate(['/']);
+          // Lưu email vào localStorage để điền sẵn trên trang đăng nhập
+          localStorage.setItem('registeredEmail', email);
+          this.router.navigate(['/login']);
         },
         error: (error) => {
           this.isLoading = false;

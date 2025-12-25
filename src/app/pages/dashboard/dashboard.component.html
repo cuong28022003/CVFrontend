@@ -1,0 +1,67 @@
+<section class="dashboard">
+	<header class="hero">
+		<div>
+			<p class="eyebrow">CV workspace</p>
+			<h1>Dashboard</h1>
+			<p class="lede">Manage your CV list, visibility, and quick create/edit/delete actions.</p>
+		</div>
+		<button class="btn primary" (click)="createCv()">+ Create CV</button>
+	</header>
+
+	<div class="stats">
+		<div class="stat-card">
+			<p class="label">Total CVs</p>
+			<p class="value">{{ cvList().length }}</p>
+			<p class="hint">Includes drafts</p>
+		</div>
+		<div class="stat-card">
+			<p class="label">Public</p>
+			<p class="value accent">{{ publicCount() }}</p>
+			<p class="hint">Visible to everyone</p>
+		</div>
+		<div class="stat-card">
+			<p class="label">Private</p>
+			<p class="value warn">{{ privateCount() }}</p>
+			<p class="hint">Only you can see</p>
+		</div>
+	</div>
+
+	<!-- Salary Chart Component -->
+	<app-salary-chart></app-salary-chart>
+
+	<div class="toolbar">
+		<div class="filters">
+			<button class="chip" [class.active]="filter() === 'all'" (click)="setFilter('all')">All</button>
+			<button class="chip" [class.active]="filter() === 'public'" (click)="setFilter('public')">Public</button>
+			<button class="chip" [class.active]="filter() === 'private'" (click)="setFilter('private')">Private</button>
+		</div>
+		<p class="muted">{{ visibleCvs().length }} results</p>
+	</div>
+
+	<div class="cv-grid" *ngIf="visibleCvs().length; else emptyState">
+		<article class="cv-card" *ngFor="let cv of visibleCvs()">
+			<div class="cv-card__top">
+				<span class="status" [class.public]="cv.status === 'public'">{{ cv.status | titlecase }}</span>
+				<span class="pill">{{ cv.views }} lượt xem</span>
+			</div>
+
+			<h3>{{ cv.title }}</h3>
+			<p class="role">{{ cv.role }}</p>
+			<p class="meta">Cập nhật {{ cv.updatedAt | date:'mediumDate' }}</p>
+
+			<div class="actions">
+				<button class="btn ghost" (click)="editCv(cv)">Edit</button>
+				<button class="btn ghost" (click)="toggleStatus(cv)">{{ cv.status === 'public' ? 'Make Private' : 'Make
+					Public' }}</button>
+				<button class="btn danger" (click)="deleteCv(cv)">Delete</button>
+			</div>
+		</article>
+	</div>
+
+	<ng-template #emptyState>
+		<div class="empty">
+			<p>No CVs match this filter.</p>
+			<button class="btn primary" (click)="createCv()">Create the first CV</button>
+		</div>
+	</ng-template>
+</section>

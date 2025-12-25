@@ -7,6 +7,9 @@ export interface User {
   id?: string;
   email: string;
   fullName: string;
+  phone?: string;
+  location?: string;
+  avatar?: string;
   password?: string;
 }
 
@@ -40,18 +43,39 @@ export class AuthService {
 
   private getUserFromStorage(): User | null {
     const storedUser = localStorage.getItem('currentUser');
-    return storedUser ? JSON.parse(storedUser) : null;
+    if (!storedUser) {
+      return null;
+    }
+    // Handle cases where invalid values like 'undefined' or malformed JSON are stored
+    try {
+      const parsed = JSON.parse(storedUser);
+      return parsed && typeof parsed === 'object' ? parsed as User : null;
+    } catch {
+      // Clean up bad value to prevent repeated failures in other browsers
+      localStorage.removeItem('currentUser');
+      return null;
+    }
   }
 
   login(email: string, password: string): Observable<User> {
     const payload: LoginRequest = { email, password };
     return this.http.post<AuthResponse>(`${this.baseUrl}/login`, payload).pipe(
       tap((res) => {
+        console.log('Login response:', res);
         if (res.token) {
           localStorage.setItem('token', res.token);
         }
-        localStorage.setItem('currentUser', JSON.stringify(res.user));
-        this.currentUserSubject.next(res.user);
+        if (res.user) {
+          const serialized = JSON.stringify(res.user);
+          // Only persist if serialization succeeds and yields a string
+          if (typeof serialized === 'string') {
+            localStorage.setItem('currentUser', serialized);
+          }
+          this.currentUserSubject.next(res.user);
+        } else {
+          localStorage.removeItem('currentUser');
+          this.currentUserSubject.next(null);
+        }
       }),
       map((res) => res.user)
     );
@@ -64,8 +88,16 @@ export class AuthService {
         if (res.token) {
           localStorage.setItem('token', res.token);
         }
-        localStorage.setItem('currentUser', JSON.stringify(res.user));
-        this.currentUserSubject.next(res.user);
+        if (res.user) {
+          const serialized = JSON.stringify(res.user);
+          if (typeof serialized === 'string') {
+            localStorage.setItem('currentUser', serialized);
+          }
+          this.currentUserSubject.next(res.user);
+        } else {
+          localStorage.removeItem('currentUser');
+          this.currentUserSubject.next(null);
+        }
       }),
       map((res) => res.user)
     );
@@ -87,5 +119,10 @@ export class AuthService {
 
   getToken(): string | null {
     return localStorage.getItem('token');
+  }
+
+  updateCurrentUser(user: User): void {
+    this.currentUserSubject.next(user);
+    localStorage.setItem('currentUser', JSON.stringify(user));
   }
 }

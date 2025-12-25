@@ -1,0 +1,68 @@
+.profile {
+    padding: 40px 20px;
+    max-width: 600px;
+    margin: 0 auto;
+
+    h1 {
+        margin-bottom: 30px;
+        font-size: 28px;
+        font-weight: 600;
+    }
+
+    mat-card {
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .avatar-section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 30px;
+        padding-bottom: 20px;
+        border-bottom: 1px solid #eee;
+
+        .avatar-preview {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 16px;
+            border: 3px solid #f0f0f0;
+        }
+
+        .avatar-placeholder {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background-color: #f5f5f5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 16px;
+            color: #999;
+            font-size: 14px;
+            text-align: center;
+        }
+
+        button {
+            margin-top: 8px;
+        }
+    }
+
+    .full-width {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .button-group {
+        display: flex;
+        gap: 12px;
+        margin-top: 30px;
+
+        button {
+            flex: 1;
+            height: 44px;
+            font-size: 16px;
+        }
+    }
+}
